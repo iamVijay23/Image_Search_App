@@ -39,7 +39,7 @@ async function searchImage(e) {
         const imageElement = document.createElement("div");
         const description = document.createElement("p");
 
-        imageElement.classList.add("imageDiv");
+        imageElement.classList.add("imageElement");
         imageElement.innerHTML = `<img src= "${photo.urls.regular}" alt= "${photo.alt_description}"/>`;
         // description.textContent = photo.alt_description;
         // imageElement.appendChild(description);
