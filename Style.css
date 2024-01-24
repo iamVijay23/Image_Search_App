@@ -1,0 +1,114 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none !important;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  scroll-behavior: smooth;
+}
+
+header {
+  width: 100%;
+  text-align: center;
+  background-color: rgb(177, 145, 219);
+  padding: 10px;
+  top: 0px;
+}
+
+.container {
+  width: 100%;
+  margin-top: 40px;
+  text-align: center;
+}
+.container form {
+  text-align: center;
+}
+.container form .search-container input {
+  padding: 10px 12px;
+  font-size: 16px;
+  background-color: #eee;
+  width: 65%;
+  outline: none;
+  border: none;
+  margin: 10px;
+}
+.container form .search-container .btn {
+  padding: 11px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  color: #333;
+  background-color: rgb(177, 145, 219);
+  right: 50px;
+}
+
+.imagesContainer {
+  min-height: 80vh;
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: 50px;
+  margin-right: 50px;
+  margin-bottom: 10px;
+  justify-content: center;
+}
+/* .imageDiv {
+  /* background-color: #a5a1a1; 
+  width: 300px;
+  height: 300px;
+  padding: 10px;
+  margin: 5px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 500;
+  
+} */
+
+img {
+  margin: 10px;
+  padding: 10px;
+  width: 250px;
+  height: 250px !important;
+}
+
+img:hover {
+  opacity: 0.8;
+  animation: flip 2s infinite alternate; /* 2s duration, infinite loop, alternate direction */
+}
+
+@keyframes flip {
+  0% {
+    transform: scaleX(1); /* No flip initially */
+  }
+  100% {
+    transform: scaleX(-1); /* Horizontal flip */
+  }
+}
+
+footer {
+  /* position: fixed; */
+  width: 100%;
+  bottom: 0;
+  background-color: rgb(177, 145, 219);
+  color: #141414;
+  padding: 10px;
+  text-align: center;
+  font-weight: 600;
+  display: block;
+}
+@media screen and (max-width: 529px) {
+  .image img {
+    width: 100%;
+    height: auto;
+  }
+}
