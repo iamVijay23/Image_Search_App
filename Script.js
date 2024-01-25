@@ -13,12 +13,9 @@ const loadMoreBtn = document.querySelector("#loadMore");
 let pageNo = 1;
 
 // Function to handle the search for images
-async function searchImage(e, page) {
+async function searchImage(e, page, searchTerm) {
   e.preventDefault();
   try {
-    // Get the search term from the input and trim any extra whitespace
-    let searchTerm = input.value.trim();
-
     // Build the URL for the Unsplash API search
     let url = `https://api.unsplash.com/search/photos?query=${searchTerm}&per_page=20&page=${page}&client_id=${accessKey}`;
 
@@ -26,51 +23,65 @@ async function searchImage(e, page) {
     if (page === 1) {
       imageContainer.innerHTML = "";
     }
-   
-      // Fetch data from the Unsplash API
-      let response = await fetch(url);
-      let data = await response.json();
 
-      // Iterate through the results and create image elements for each photo
+    // Fetch data from the Unsplash API
+    let response = await fetch(url);
+    let data = await response.json();
 
-      if (data.results.length > 0) {
-        data.results.forEach((photo) => {
-          // Creating Image Element div
-          const imageElement = document.createElement("div");
-          const description = document.createElement("p");
+    // Iterate through the results and create image elements for each photo
 
-          // Adding class and innerHtml
-          imageElement.classList.add("imageElement");
-          imageElement.innerHTML = `<img src= "${photo.urls.regular}" alt= "${photo.alt_description}"/>`;
+    if (data.results.length > 0) {
+      data.results.forEach((photo) => {
+        // Creating Image Element div
+        const imageElement = document.createElement("div");
+        const description = document.createElement("p");
 
-          // Appending everything to the imageContainer
-          // description.innerText = photo.alt_description;
-          // imageElement.appendChild(description);
+        // Adding class and innerHtml
+        imageElement.classList.add("imageElement");
+        imageElement.innerHTML = `<img src= "${photo.urls.regular}" alt= "${photo.alt_description}"/>`;
 
-          imageContainer.appendChild(imageElement);
-        });
+        // Appending everything to the imageContainer
+        // description.innerText = photo.alt_description;
+        // imageElement.appendChild(description);
 
-        // We Reached till the last page
-        if (data.total_pages === page) {
-          loadMoreBtn.style.display = "none";
-        } else {
-          loadMoreBtn.style.display = "block";
-        }
+        imageContainer.appendChild(imageElement);
+      });
+
+      // We Reached till the last page
+      if (data.total_pages === page) {
+        loadMoreBtn.style.display = "none";
       } else {
-        imageContainer.innerHTML = "<h2> No Image found </h2>";
+        loadMoreBtn.style.display = "block";
       }
+    } else {
+      imageContainer.innerHTML = "<h2> No Image found </h2>";
     }
-   catch (error) {
+  } catch (error) {
     //  any errors that occur during the API request
     imageContainer.innerHTML = "<h2> Please Try Again Later </h2>";
   }
 }
 
 // Add an input event listener to the search input for real-time updates
-input.addEventListener("input", searchImage);
+// input.addEventListener("input", searchImage);
 
 // Add a submit event listener to the search form, triggering the searchImage function
-searchForm.addEventListener("submit", (e) => searchImage(e, pageNo));
+searchForm.addEventListener("submit", (e) => {
+  // Get the search term from the input and trim any extra whitespace
+  let searchTerm = input.value.trim();
+
+  if (searchTerm === "") {
+    // Show "No Image found" message
+    imageContainer.innerHTML = "<h2> No Image found </h2>";
+
+    // Set a timeout to clear the message after 3 seconds
+    setTimeout(() => {
+      imageContainer.innerHTML = ""; // Clear the content
+    }, 3000);
+  }
+  // Fetch the Image
+  searchImage(e, pageNo, searchTerm);
+});
 
 // Add A Event Listerner to the loadmore button to fetch more images
 
@@ -79,8 +90,14 @@ loadMoreBtn.addEventListener("click", () => {
   let searchTerm = input.value.trim();
 
   if (searchTerm === "") {
+    // Show "No Image found" message
     imageContainer.innerHTML = "<h2> No Image found </h2>";
+
+    // Set a timeout to clear the message after 3 seconds
+    setTimeout(() => {
+      imageContainer.innerHTML = ""; // Clear the content
+    }, 3000);
   }
   pageNo++; // Increment pageNo before making the API call
-  searchImage(event, pageNo); // Pass null as the event parameter, as it's not used in the function
+  searchImage(event, pageNo, searchTerm); // Pass null as the event parameter, as it's not used in the function
 });

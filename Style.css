@@ -18,7 +18,7 @@ body {
 header {
   width: 100%;
   text-align: center;
-  background-color: rgb(177, 145, 219);
+  background-color: rgb(161, 99, 243);
   padding: 10px;
   top: 0px;
 }
@@ -45,9 +45,15 @@ header {
   border: none;
   font-weight: 600;
   cursor: pointer;
-  color: #333;
-  background-color: rgb(177, 145, 219);
+  color: #eee;
+  background-color: rgb(161, 99, 243);
   right: 50px;
+}
+.gallery{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 .imagesContainer {
@@ -58,6 +64,7 @@ header {
   margin-right: 50px;
   margin-bottom: 10px;
   justify-content: center;
+ 
 }
 
 img {
@@ -87,8 +94,8 @@ img:hover {
   cursor: pointer;
   font-size: 20px;
   font-weight: 600;
-  background-color: rgb(177, 145, 219);
-  color: #333;
+  background-color:rgb(161, 99, 243);
+  color: #eee;
   text-align: center;
   margin: 10px;
   display: none;
@@ -98,7 +105,7 @@ footer {
   /* position: fixed; */
   width: 100%;
   bottom: 0;
-  background-color: rgb(177, 145, 219);
+  background-color:rgb(161, 99, 243);
   color: #141414;
   padding: 10px;
   text-align: center;
