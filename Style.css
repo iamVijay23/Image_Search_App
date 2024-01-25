@@ -60,12 +60,11 @@ header {
   justify-content: center;
 }
 
-
 img {
   margin: 10px;
   padding: 10px;
   width: 250px;
-  height: 250px !important;
+  height: 250px;
 }
 
 img:hover {
@@ -82,6 +81,19 @@ img:hover {
   }
 }
 
+#loadMore {
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: 600;
+  background-color: rgb(177, 145, 219);
+  color: #333;
+  text-align: center;
+  margin: 10px;
+  display: none;
+}
+
 footer {
   /* position: fixed; */
   width: 100%;
@@ -93,9 +105,9 @@ footer {
   font-weight: 600;
   display: block;
 }
-@media screen and (max-width: 529px) {
-  .image img {
-    width: 100%;
+@media screen and (max-width: 549px) {
+  .imageElement img {
+    width: 100% ;
     height: auto;
   }
 }
